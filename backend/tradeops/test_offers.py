@@ -96,7 +96,7 @@ class OfferTests(Base):
             {**base, "items": [{"product": p.id, "quantity": 0, "unit_price": "10"}]},
             {**base, "items": [{"product": p.id, "quantity": 1, "unit_price": "-1"}]},
             {**base, "items": [{"product": 99999, "quantity": 1, "unit_price": "1"}]},
-            {**base, "jobs": [{"job_type": "FLYING", "charge_to_client": "5"}]},
+            {**base, "jobs": [{"job_type": "", "charge_to_client": "5"}]},
             {**base, "account": 99999},
             {**base, "car": 1},
             {**base, "valid_until": "nope"},

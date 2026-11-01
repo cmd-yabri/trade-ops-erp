@@ -2,7 +2,8 @@
 import type { MoneyInput } from "./modules";
 
 // Enums
-export type JobTypeEnum = "STEEL" | "ELECTRIC" | "INSTALL" | "MOVING";
+// Free-text service name (legacy rows hold STEEL / ELECTRIC / INSTALL / MOVING)
+export type JobTypeEnum = string;
 export type StatusEnum = "PENDING" | "PARTIAL" | "RECEIVED" | "CANCELLED";
 export type CategoryEnum =
   | "RENT"

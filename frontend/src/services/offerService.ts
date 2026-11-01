@@ -2,7 +2,7 @@ import apiClient from "@/lib/apiClient";
 import { SalesOrder } from "@/types/api";
 
 export type OfferStatus = "PENDING" | "ACCEPTED" | "REJECTED";
-export type OfferJobType = "STEEL" | "ELECTRIC" | "INSTALL" | "MOVING";
+export type OfferJobType = string;
 
 export interface OfferItem {
   id: number;

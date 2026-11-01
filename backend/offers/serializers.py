@@ -4,13 +4,10 @@ from django.db import transaction
 from rest_framework import serializers
 
 from inventory.stock import check_quantity_for_product, default_branch
-from order.models import FreelanceJob
 from tradeops.errors import BusinessRuleError, is_admin, require_feature
 from tradeops.fields import MoneyField, QuantityField
 
 from .models import Offer, OfferItem, OfferJob
-
-JOB_TYPES = [code for code, _ in FreelanceJob.JOB_TYPES]
 
 
 class OfferItemSerializer(serializers.ModelSerializer):
@@ -28,7 +25,7 @@ class OfferItemSerializer(serializers.ModelSerializer):
 
 
 class OfferJobSerializer(serializers.ModelSerializer):
-    job_type = serializers.ChoiceField(choices=JOB_TYPES)
+    job_type = serializers.CharField(max_length=100)
 
     class Meta:
         model = OfferJob

@@ -73,10 +73,10 @@ class OfferItem(models.Model):
 
 
 class OfferJob(models.Model):
-    """External work (installation, electrician ...) included in the offer."""
+    """A service or extra charge included in the offer (see order.FreelanceJob)."""
 
     offer = models.ForeignKey(Offer, related_name="jobs", on_delete=models.CASCADE)
-    job_type = models.CharField(max_length=20)
+    job_type = models.CharField(max_length=100)
     contractor_name = models.CharField(max_length=200, blank=True)
     cost_to_company = models.DecimalField(max_digits=10, decimal_places=2, default=ZERO, validators=[MinValueValidator(ZERO)])
     charge_to_client = models.DecimalField(max_digits=10, decimal_places=2, default=ZERO, validators=[MinValueValidator(ZERO)])

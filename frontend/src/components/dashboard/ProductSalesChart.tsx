@@ -11,8 +11,8 @@ interface ProductSalesChartProps {
 }
 
 const COLORS = [
-  'hsl(160, 84%, 39%)',
-  'hsl(199, 89%, 48%)',
+  'hsl(221, 83%, 53%)',
+  'hsl(172, 66%, 40%)',
   'hsl(38, 92%, 50%)',
   'hsl(280, 65%, 60%)',
 ];

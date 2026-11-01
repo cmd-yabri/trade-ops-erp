@@ -74,12 +74,12 @@ export function ProfitTrendsChart({ data }: ProfitTrendsChartProps) {
               <linearGradient id="profitGradient" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
-                  stopColor="hsl(160, 84%, 39%)"
+                  stopColor="hsl(221, 83%, 53%)"
                   stopOpacity={0.3}
                 />
                 <stop
                   offset="95%"
-                  stopColor="hsl(160, 84%, 39%)"
+                  stopColor="hsl(221, 83%, 53%)"
                   stopOpacity={0}
                 />
               </linearGradient>
@@ -114,7 +114,7 @@ export function ProfitTrendsChart({ data }: ProfitTrendsChartProps) {
             <Area
               type="monotone"
               dataKey="profit"
-              stroke="hsl(160, 84%, 39%)"
+              stroke="hsl(221, 83%, 53%)"
               strokeWidth={2}
               fill="url(#profitGradient)"
             />

@@ -46,12 +46,7 @@ import { companyHeaderHtml, escapeHtml, printBaseCss } from "@/lib/print";
 import { confirmAction, confirmMoneyAction } from "@/lib/confirmMoneyAction";
 import { cn, formatMoney, formatQty, todayLocal } from "@/lib/utils";
 
-const JOB_LABEL: Record<string, string> = {
-  STEEL: "عمل الحديد",
-  ELECTRIC: "كهربائي",
-  INSTALL: "تركيب",
-  MOVING: "نقل و تحميل",
-};
+import { serviceLabel, serviceSuggestions } from "@/lib/services";
 
 type Filter = "all" | "PENDING" | "ACCEPTED" | "REJECTED";
 
@@ -185,6 +180,10 @@ export default function Offers() {
       toast({ title: "خطأ", description: "أضف منتجاً أو خدمة واحدة على الأقل.", variant: "destructive" });
       return;
     }
+    if (form.jobs.some((j) => !j.job_type.trim())) {
+      toast({ title: "خطأ", description: "اكتب اسم كل خدمة أو احذف السطر الفارغ.", variant: "destructive" });
+      return;
+    }
     if (items.some((i) => !(i.quantity > 0))) {
       toast({ title: "خطأ", description: "الكمية يجب أن تكون أكبر من صفر.", variant: "destructive" });
       return;
@@ -258,7 +257,7 @@ export default function Offers() {
       .join("");
     const jobRows = offer.jobs
       .map(
-        (j) => `<tr><td colspan="3">${JOB_LABEL[j.job_type] ?? j.job_type}${
+        (j) => `<tr><td colspan="3">${serviceLabel(j.job_type)}${
           j.contractor_name ? " - " + escapeHtml(j.contractor_name) : ""
         }</td><td>${formatMoney(j.charge_to_client)}</td></tr>`,
       )
@@ -268,19 +267,19 @@ export default function Offers() {
       <style>
         ${printBaseCss}
         body { font-family: 'Arial', 'Tahoma', sans-serif; }
-        .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #059669; padding-bottom: 16px; margin-bottom: 24px; }
-        .store-name { font-size: 1.5em; font-weight: bold; color: #059669; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #2563eb; padding-bottom: 16px; margin-bottom: 24px; }
+        .store-name { font-size: 1.5em; font-weight: bold; color: #2563eb; }
         .store-phone { color: #666; margin-top: 4px; }
         .store-info { text-align: center; }
         table { width: 100%; border-collapse: collapse; margin-top: 16px; }
         th { background: #f1f5f9; padding: 10px; text-align: right; border-bottom: 2px solid #dee2e6; }
         td { padding: 8px; border-bottom: 1px solid #ddd; text-align: right; }
         .totals { margin-top: 20px; }
-        .total-row { font-size: 1.25em; font-weight: bold; color: #059669; }
+        .total-row { font-size: 1.25em; font-weight: bold; color: #2563eb; }
         .note { margin-top: 24px; padding: 10px 14px; background: #f8fafc; border-radius: 6px; }
         .print-buttons { text-align: center; margin-top: 32px; padding-top: 16px; border-top: 2px solid #ddd; }
         button { padding: 10px 20px; margin: 5px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
-        .btn-print { background: #059669; color: #fff; } .btn-close { background: #6b7280; color: #fff; }
+        .btn-print { background: #2563eb; color: #fff; } .btn-close { background: #6b7280; color: #fff; }
       </style></head><body>
         <div class="header">
           <div><h1>عرض سعر</h1><p>رقم العرض: OF-${offer.id}</p>
@@ -611,31 +610,37 @@ export default function Offers() {
 
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <Label>الخدمات (تركيب، كهرباء، نقل...)</Label>
+                <Label>الخدمات والرسوم الإضافية (توصيل، تركيب، صيانة، ضمان...)</Label>
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => setForm({ ...form, jobs: [...form.jobs, { job_type: "INSTALL", contractor_name: "", cost_to_company: "0", charge_to_client: "0" }] })}
+                  onClick={() => setForm({ ...form, jobs: [...form.jobs, { job_type: "", contractor_name: "", cost_to_company: "0", charge_to_client: "0" }] })}
                 >
                   <Plus className="w-4 h-4 ml-1" /> إضافة خدمة
                 </Button>
               </div>
+              <datalist id="service-names">
+                {serviceSuggestions(offers.flatMap((o) => o.jobs.map((j) => j.job_type))).map((n) => (
+                  <option key={n} value={n} />
+                ))}
+              </datalist>
               {form.jobs.map((job, index) => (
-                <div key={index} className="grid grid-cols-[1fr_1fr_90px_90px_auto] gap-2 items-end p-3 bg-muted rounded-lg">
+                <div key={index} className="grid grid-cols-[1.6fr_1fr_90px_90px_auto] gap-2 items-end p-3 bg-muted rounded-lg">
                   <div className="space-y-1">
-                    <Label className="text-xs">النوع</Label>
-                    <SimpleSelect
-                      value={job.job_type}
-                      onChange={(v) => {
+                    <Label className="text-xs">الخدمة</Label>
+                    <Input
+                      list="service-names"
+                      placeholder="اكتب أو اختر"
+                      value={serviceLabel(job.job_type)}
+                      onChange={(e) => {
                         const jobs = [...form.jobs];
-                        jobs[index] = { ...jobs[index], job_type: v as OfferJobType };
+                        jobs[index] = { ...jobs[index], job_type: e.target.value };
                         setForm({ ...form, jobs });
                       }}
-                      options={Object.entries(JOB_LABEL).map(([value, label]) => ({ value, label }))}
                     />
                   </div>
                   <div className="space-y-1">
-                    <Label className="text-xs">المقاول</Label>
+                    <Label className="text-xs">مقدّم الخدمة (اختياري)</Label>
                     <Input
                       value={job.contractor_name}
                       onChange={(e) => {
@@ -658,7 +663,7 @@ export default function Offers() {
                     />
                   </div>
                   <div className="space-y-1">
-                    <Label className="text-xs">على العميل</Label>
+                    <Label className="text-xs">السعر للعميل</Label>
                     <Input
                       type="number"
                       value={job.charge_to_client}
@@ -728,7 +733,7 @@ export default function Offers() {
                 ))}
                 {shownDetail.jobs.map((j) => (
                   <div key={j.id} className="flex justify-between p-2 bg-muted rounded text-sm">
-                    <span>{JOB_LABEL[j.job_type] ?? j.job_type}{j.contractor_name ? ` - ${j.contractor_name}` : ""}</span>
+                    <span>{serviceLabel(j.job_type)}{j.contractor_name ? ` - ${j.contractor_name}` : ""}</span>
                     <span className="font-medium">{formatMoney(j.charge_to_client)}</span>
                   </div>
                 ))}

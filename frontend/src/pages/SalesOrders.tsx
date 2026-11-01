@@ -46,6 +46,7 @@ import {
 import { useProducts } from "@/hooks/useInventory";
 import { Skeleton } from "@/components/ui/skeleton";
 import { SalesOrder, JobTypeEnum, SalesOrderCreate } from "@/types/api";
+import { serviceLabel, serviceSuggestions } from "@/lib/services";
 import { getErrorMessage } from "@/lib/errors";
 import { useAuth } from "@/contexts/AuthContext";
 import { usePagination } from "@/hooks/usePagination";
@@ -167,15 +168,8 @@ export default function SalesOrders() {
     }).format(num);
   };
 
-  const getJobTypeArabic = (jobType: string): string => {
-    const jobTypeMap: { [key: string]: string } = {
-      STEEL: "عمل الحديد",
-      ELECTRIC: "كهربائي",
-      INSTALL: "تركيب",
-      MOVING: "نقل و تحميل",
-    };
-    return jobTypeMap[jobType] || jobType;
-  };
+  const getJobTypeArabic = serviceLabel;
+  const serviceNames = serviceSuggestions((orders ?? []).flatMap((o) => o.freelance_jobs.map((j) => j.job_type)));
 
   const getStatusBadge = (isFinalized: boolean) => {
     if (isFinalized) {
@@ -268,7 +262,7 @@ export default function SalesOrders() {
       freelance_jobs: [
         ...newOrder.freelance_jobs,
         {
-          job_type: "INSTALL" as JobTypeEnum,
+          job_type: "" as JobTypeEnum,
           contractor_name: "",
           cost_to_company: "0",
           charge_to_client: "0",
@@ -323,6 +317,10 @@ export default function SalesOrders() {
     const validItems = newOrder.items.filter((i) => i.product > 0);
     if (validItems.length === 0 && newOrder.freelance_jobs.length === 0) {
       toast({ title: "خطأ", description: "أضف منتجاً أو خدمة واحدة على الأقل.", variant: "destructive" });
+      return;
+    }
+    if (newOrder.freelance_jobs.some((j) => !j.job_type.trim())) {
+      toast({ title: "خطأ", description: "اكتب اسم كل خدمة أو احذف السطر الفارغ.", variant: "destructive" });
       return;
     }
     if (validItems.some((i) => !(i.quantity > 0))) {
@@ -684,7 +682,7 @@ export default function SalesOrders() {
             أوامر البيع
           </h1>
           <p className="text-muted-foreground mt-1">
-            إدارة مشاريع العملاء والتركيبات
+            إدارة طلبات العملاء وفواتير البيع
           </p>
         </div>
         <Dialog
@@ -704,7 +702,7 @@ export default function SalesOrders() {
               onClick={handleOpenCreateDialog}
             >
               <Plus className="w-4 h-4" />
-              إنشاء مشروع
+              إنشاء أمر بيع
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
@@ -931,10 +929,15 @@ export default function SalesOrders() {
                 )}
               </div>
 
-              {/* Freelance Jobs */}
+              {/* Services / extra charges */}
+              <datalist id="service-names">
+                {serviceNames.map((n) => (
+                  <option key={n} value={n} />
+                ))}
+              </datalist>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <Label>وظائف العمل الحر (العمالة والتركيب)</Label>
+                  <Label>الخدمات والرسوم الإضافية (توصيل، تركيب، صيانة، ضمان...)</Label>
                   <Button variant="outline" size="sm" onClick={addFreelanceJob}>
                     <Plus className="w-4 h-4 mr-1" /> إضافة خدمة
                   </Button>
@@ -942,29 +945,21 @@ export default function SalesOrders() {
                 {newOrder.freelance_jobs.map((job, index) => (
                   <div
                     key={index}
-                    className="grid grid-cols-4 gap-3 p-3 bg-muted rounded-lg"
+                    className="grid grid-cols-[1.6fr_1fr_1fr_1.2fr] gap-3 p-3 bg-muted rounded-lg"
                   >
                     <div className="space-y-1">
-                      <Label className="text-xs">نوع الوظيفة</Label>
-                      <Select
-                        value={job.job_type}
-                        onValueChange={(v) =>
-                          updateFreelanceJob(index, "job_type", v)
+                      <Label className="text-xs">الخدمة</Label>
+                      <Input
+                        list="service-names"
+                        placeholder="اكتب أو اختر"
+                        value={serviceLabel(job.job_type)}
+                        onChange={(e) =>
+                          updateFreelanceJob(index, "job_type", e.target.value)
                         }
-                      >
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="STEEL">عمل الحديد</SelectItem>
-                          <SelectItem value="ELECTRIC">كهربائي</SelectItem>
-                          <SelectItem value="INSTALL">تركيب</SelectItem>
-                          <SelectItem value="MOVING">نقل و تحميل</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      />
                     </div>
                     <div className="space-y-1">
-                      <Label className="text-xs">المقاول</Label>
+                      <Label className="text-xs">مقدّم الخدمة (اختياري)</Label>
                       <Input
                         placeholder="اسم"
                         value={job.contractor_name}
@@ -978,7 +973,7 @@ export default function SalesOrders() {
                       />
                     </div>
                     <div className="space-y-1">
-                      <Label className="text-xs">التكلفة على الشركة</Label>
+                      <Label className="text-xs">التكلفة علينا</Label>
                       <Input
                         type="number"
                         value={job.cost_to_company}
@@ -993,7 +988,7 @@ export default function SalesOrders() {
                     </div>
                     <div className="flex items-end gap-2">
                       <div className="flex-1 space-y-1">
-                        <Label className="text-xs">التكلفة على العميل</Label>
+                        <Label className="text-xs">السعر للعميل</Label>
                         <Input
                           type="number"
                           value={job.charge_to_client}

@@ -160,22 +160,19 @@ class OrderItem(models.Model):
 
 
 class FreelanceJob(models.Model):
-    """External work (steel / electric / ...) attached to a sales order."""
+    """A service or extra charge on a sales order (delivery, installation, repair, warranty ...).
 
-    JOB_TYPES = [
-        ("STEEL", "Steel Work"),
-        ("ELECTRIC", "Electrician"),
-        ("INSTALL", "General Installation"),
-        ("MOVING", "نقل و تحميل"),
-    ]
+    `job_type` is the free-text service name; rows made before it became free text hold the old
+    codes STEEL / ELECTRIC / INSTALL / MOVING, which the UI still shows with Arabic names.
+    """
 
     order = models.ForeignKey(SalesOrder, related_name="freelance_jobs", on_delete=models.CASCADE)
-    job_type = models.CharField(max_length=20, choices=JOB_TYPES)
-    contractor_name = models.CharField(max_length=200, blank=True, help_text="Who is doing the work?")
+    job_type = models.CharField(max_length=100, help_text="Service name")
+    contractor_name = models.CharField(max_length=200, blank=True, help_text="Who provides the service (optional)")
 
     cost_to_company = models.DecimalField(
         max_digits=10, decimal_places=2, default=ZERO, validators=[MinValueValidator(ZERO)],
-        help_text="What we pay the contractor",
+        help_text="What the service costs us (0 for a pure charge)",
     )
     charge_to_client = models.DecimalField(
         max_digits=10, decimal_places=2, default=ZERO, validators=[MinValueValidator(ZERO)],
