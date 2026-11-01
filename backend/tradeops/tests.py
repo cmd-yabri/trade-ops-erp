@@ -621,7 +621,9 @@ class FinanceTests(Base):
         get = lambda period: self.client.get(f"/api/reports/financials/?period={period}").data["total_operational_expenses"]
         self.assertEqual(get("daily"), 5)
         self.assertEqual(get("weekly"), 5)
-        self.assertEqual(get("monthly"), 15)
+        # the monthly window is the calendar month: 20 days ago is inside it only late in the month
+        in_month = (date.today() - timedelta(days=20)).month == date.today().month
+        self.assertEqual(get("monthly"), 15 if in_month else 5)
 
 
 class LicenseTests(Base):

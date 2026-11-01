@@ -410,7 +410,7 @@ export default function Financials() {
           </p>
           <p className="text-xs text-primary-foreground/80 mt-2">
             المبيعات {formatCurrency(income)} − تكلفة البضاعة المباعة {formatCurrency(cogs)}
-            {freelanceCosts > 0 && ` − العمل الحر ${formatCurrency(freelanceCosts)}`} − المصاريف {formatCurrency(opExpenses)}
+            {freelanceCosts > 0 && ` − تكلفة الخدمات ${formatCurrency(freelanceCosts)}`} − المصاريف {formatCurrency(opExpenses)}
           </p>
           {income > 0 && (
             <p className="text-sm text-primary-foreground/80 mt-4">

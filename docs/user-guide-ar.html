@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>دليل مستخدم تريد أوبس</title>
+<style>
+  @font-face { font-family: Cairo; font-weight: 400; src: url(guide-assets/cairo-arabic-400-normal.woff2) format("woff2"); unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFF, U+200C-200F; }
+  @font-face { font-family: Cairo; font-weight: 600; src: url(guide-assets/cairo-arabic-600-normal.woff2) format("woff2"); unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFF, U+200C-200F; }
+  @font-face { font-family: Cairo; font-weight: 700; src: url(guide-assets/cairo-arabic-700-normal.woff2) format("woff2"); unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFF, U+200C-200F; }
+  @font-face { font-family: Cairo; font-weight: 400; src: url(guide-assets/cairo-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122; }
+  @font-face { font-family: Cairo; font-weight: 600; src: url(guide-assets/cairo-latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122; }
+  @font-face { font-family: Cairo; font-weight: 700; src: url(guide-assets/cairo-latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122; }
+
+  @font-face { font-family: Geist; font-weight: 100 900; src: url(guide-assets/geist-latin.woff2) format("woff2"); }
+  @font-face { font-family: "Readex Pro"; font-weight: 160 700; src: url(guide-assets/readex-arabic.woff2) format("woff2"); unicode-range: U+0600-06FF, U+0750-077F, U+0870-08FF, U+200C-200E, U+FB50-FDFF, U+FE70-FEFC; }
+  :root { color-scheme: light; --g: #2563eb; --gd: #1d4ed8; --soft: #eff6ff; --ink: #1f2937; --mute: #6b7280; --line: #e5e7eb; }
+  @page { size: A4; margin: 16mm 15mm; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { background: #fff !important; color: var(--ink) !important; }
+  body { font-family: Cairo, Tahoma, Arial, sans-serif; font-size: 11.5pt; line-height: 1.85; margin: 0; }
+
+  .cover { height: 255mm; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; page-break-after: always;
+           background: linear-gradient(160deg, #3b82f6 0%, #1d4ed8 100%); color: #fff; border-radius: 10px; padding: 20mm; }
+  .cover .sun { font-size: 54pt; line-height: 1; }
+  .cover h1 { font-size: 36pt; margin: 8mm 0 2mm; font-weight: 700; color: #fff; }
+  .cover p { font-size: 15pt; margin: 0 0 1mm; color: #dbeafe; }
+  .cover .ver { margin-top: 18mm; font-size: 11pt; color: #bfdbfe; }
+
+  h2 { font-size: 20pt; color: var(--gd); border-bottom: 3px solid var(--g); padding-bottom: 2mm; margin: 0 0 5mm; }
+  h3 { font-size: 14pt; color: var(--g); margin: 6mm 0 2mm; break-after: avoid; page-break-after: avoid; }
+  .mod { break-inside: avoid; page-break-inside: avoid; }
+  .mod figure img { max-height: 46mm; }
+  .mod figure { margin: 2mm 0; }
+  p { margin: 0 0 3mm; }
+  section { page-break-before: always; }
+  ol, ul { margin: 0 0 4mm; padding-inline-start: 7mm; }
+  li { margin-bottom: 1.5mm; }
+  b, strong { font-weight: 700; color: #111827; }
+  .btn { display: inline-block; background: var(--soft); border: 1px solid #bfdbfe; color: var(--gd); border-radius: 5px; padding: 0 2.2mm; font-weight: 600; font-size: 10.5pt; white-space: nowrap; }
+  .note, .tip, .warn { border-radius: 8px; padding: 3mm 4mm; margin: 4mm 0; break-inside: avoid; }
+  .note { background: #eff6ff; border-inline-start: 4px solid #3b82f6; }
+  .tip { background: var(--soft); border-inline-start: 4px solid var(--g); }
+  .warn { background: #fffbeb; border-inline-start: 4px solid #f59e0b; }
+  .note b:first-child, .tip b:first-child, .warn b:first-child { margin-inline-end: 1mm; }
+  figure { margin: 4mm 0; break-inside: avoid; text-align: center; }
+  figure img { max-width: 100%; max-height: 74mm; width: auto; border: 1px solid var(--line); border-radius: 8px; }
+  figure.small img { max-height: 66mm; }
+  figcaption { font-size: 9.5pt; color: var(--mute); margin-top: 1.5mm; }
+  table { width: 100%; border-collapse: collapse; margin: 3mm 0 5mm; break-inside: avoid; }
+  th { background: var(--soft); color: var(--gd); text-align: right; padding: 2mm 3mm; border: 1px solid var(--line); }
+  td { padding: 2mm 3mm; border: 1px solid var(--line); vertical-align: top; }
+  .toc { columns: 2; column-gap: 12mm; margin-top: 4mm; }
+  .toc div { padding: 1.5mm 0; border-bottom: 1px dotted #d1d5db; break-inside: avoid; }
+  .toc span { color: var(--g); font-weight: 700; margin-inline-end: 2mm; }
+  .wm { display: inline-flex; align-items: center; gap: .04em; direction: ltr; line-height: 1; font-family: Geist, sans-serif; font-weight: 600; letter-spacing: -0.04em; }
+  .wm.ar { font-family: "Readex Pro", Cairo, sans-serif; letter-spacing: 0; }
+  .mk { width: 1.4em; height: 1.4em; flex: none; margin-inline-start: -.18em; }
+  .cover .by { margin-top: 20mm; text-align: center; }
+  .cover .by .eyebrow { font-size: 8.5pt; letter-spacing: .24em; text-transform: uppercase; color: #bfdbfe; direction: ltr; margin-bottom: 3mm; }
+  .cover .chip { display: inline-flex; align-items: center; gap: 3mm; background: #0c0c0d; color: #fff; border-radius: 999px; padding: 3mm 7mm; direction: ltr; }
+  .cover .chip .wm { font-size: 24pt; }
+  .cover .chip .kind { font-size: 10pt; color: #9a9a9b; font-weight: 500; letter-spacing: -0.01em; }
+  .back { height: 255mm; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; page-break-before: always;
+          background-color: #0c0c0d; background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 6mm 6mm;
+          color: #fff; border-radius: 10px; padding: 20mm; }
+  .back .eyebrow { font-size: 9pt; letter-spacing: .26em; text-transform: uppercase; color: #8b8b8c; direction: ltr; margin-bottom: 8mm; }
+  .back .wm.en { font-size: 78pt; }
+  .back .wm.ar { font-size: 40pt; margin-top: 6mm; }
+  .back .kind { color: #9a9a9b; font-size: 12pt; margin-top: 5mm; direction: ltr; }
+  .back .rule { width: 22mm; height: 2px; background: #e2321a; margin: 10mm 0 8mm; }
+  .back p { color: #d4d4d3; font-size: 12pt; margin: 0 0 2mm; max-width: 120mm; line-height: 1.9; }
+  .back p.en { color: #8b8b8c; font-size: 9.5pt; direction: ltr; }
+  .back .cta { margin-top: 12mm; display: inline-block; background: #e2321a; color: #fff; padding: 2.5mm 8mm; border-radius: 999px; font-weight: 700; font-size: 12pt; }
+  .back .contact { margin-top: 5mm; color: #9a9a9b; font-size: 9.5pt; direction: ltr; line-height: 1.7; }
+  .back .foot { margin-top: 14mm; font-size: 8.5pt; letter-spacing: .12em; color: #6b6b6c; }
+  @page { @bottom-center { content: "تريد أوبس · منتج من نقطة ستوديو ويب"; font-family: Cairo, Tahoma, sans-serif; font-size: 8pt; color: #9ca3af; } }
+  @page :first { @bottom-center { content: none; } }
+  .num { direction: ltr; unicode-bidi: embed; display: inline-block; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="sun"><svg viewBox="0 0 24 24" width="64" height="64" fill="none"><circle cx="12" cy="12" r="8.2" stroke="#fff" stroke-width="2.2" stroke-dasharray="42 9.5" stroke-linecap="round" transform="rotate(-60 12 12)"/><circle cx="12" cy="12" r="3.4" fill="#fff"/></svg></div>
+  <h1>تريد أوبس</h1>
+  <p>نظام إدارة المخزون والمبيعات والحسابات للمحلات والشركات التجارية</p>
+  <p>دليل المستخدم المبسّط</p>
+  <div class="ver">الإصدار 1.0 — يعمل بدون إنترنت على جهازك</div>
+  <div class="by">
+    <div class="eyebrow">A product of</div>
+    <div class="chip"><span class="wm"><svg class="mk" viewBox="0 0 200 200"><defs><mask id="nqa"><rect width="200" height="200" fill="#fff"/><g fill="#000" transform="translate(0 10)"><path d="M71.7 71.7A40 40 0 1 0 128.3 71.7L117 83A24 24 0 1 1 83 83Z"/><polygon points="100,40 112,52 100,64 88,52"/><rect x="91.5" y="43.5" width="17" height="17"/></g></mask></defs><polygon points="100,20 180,100 100,180 20,100" fill="#ff6a4d" mask="url(#nqa)"/></svg>nuqta</span><span class="kind">Web Studio</span></div>
+  </div>
+</div>
+
+<h2 style="border:none">محتويات الدليل</h2>
+<div class="toc">
+  <div><span>1</span> البدء السريع</div>
+  <div><span>2</span> التعرّف على الشاشة</div>
+  <div><span>3</span> المخزون والمنتجات</div>
+  <div><span>4</span> أوامر الشراء</div>
+  <div><span>5</span> أوامر البيع</div>
+  <div><span>6</span> عروض الأسعار</div>
+  <div><span>7</span> الدفعات</div>
+  <div><span>8</span> المرتجعات وتعديل الفواتير</div>
+  <div><span>9</span> المالية والأرباح</div>
+  <div><span>10</span> الميزات الاختيارية</div>
+  <div><span>11</span> الإعدادات والنسخ الاحتياطي</div>
+  <div><span>12</span> أسئلة شائعة</div>
+</div>
+<div class="tip" style="margin-top:10mm"><b>فكرة البرنامج:</b> تُسجّل ما تشتريه من الموردين وما تبيعه للعملاء، ويتولّى البرنامج حساب المخزون والتكلفة والأرباح والديون تلقائياً. كل بياناتك محفوظة على جهازك فقط.</div>
+
+<section>
+<h2>1. البدء السريع</h2>
+<h3>التثبيت والتشغيل</h3>
+<ol>
+  <li>شغّل ملف التثبيت <b>TradeOps-Setup</b> واتبع الخطوات (لا يحتاج صلاحيات مدير). سيُنشئ اختصاراً على سطح المكتب.</li>
+  <li>افتح <b>تريد أوبس</b> من الاختصار. في أول مرة تظهر شاشة <b>إنشاء حساب المدير (المالك)</b>: اكتب اسمك واسم المستخدم وكلمة مرور (6 أحرف على الأقل) ثم اضغط <span class="btn">إنشاء حساب</span>. احتفظ بكلمة المرور في مكان آمن.</li>
+  <li>بعد إنشاء الحساب تدخل مباشرة إلى لوحة التحكم، ولا يمكن إنشاء حساب مالك آخر من هذه الشاشة.</li>
+  <li>يتذكّر البرنامج <b>تسجيل دخولك</b> و<b>الفرع المختار</b> بين مرة وأخرى، فلا تحتاج للدخول عند كل تشغيل. استخدم <span class="btn">تسجيل الخروج</span> إن كان غيرك يستعمل الجهاز.</li>
+</ol>
+<div class="note"><b>ملاحظة:</b> في ويندوز 10 قد يلزم برنامج <b>Microsoft Edge WebView2</b> (موجود مسبقاً في ويندوز 11). إن لم يوجد يفتح البرنامج في المتصفح بدلاً من نافذته الخاصة ويعمل بشكل طبيعي.</div>
+
+<h3>الفترة التجريبية والتفعيل</h3>
+<p>للبرنامج فترة تجريبية <b>14 يوماً</b>. بعدها يُقفل ما عدا تسجيل الدخول والنسخ الاحتياطي وصفحة الترخيص، <b>ولا تُحذف أي بيانات</b>. للتفعيل:</p>
+<ol>
+  <li>افتح صفحة <b>الترخيص</b> (من الشريط الأصفر أو من الإعدادات) وانسخ <b>رمز الجهاز</b>.</li>
+  <li>أرسله إلى الدعم الفني ليعطيك <b>مفتاح التفعيل</b>.</li>
+  <li>الصق المفتاح واضغط <span class="btn">تفعيل</span>. يعمل بدون إنترنت ولجهاز واحد.</li>
+</ol>
+
+<h3>نسيت كلمة المرور</h3>
+<p>من شاشة الدخول اختر <span class="btn">نسيت كلمة المرور؟</span> فيظهر <b>رمز طلب</b>. أرسله مع اسم المستخدم إلى الدعم، ثم الصق <b>رمز الاسترجاع</b> الذي يصلك واختر كلمة مرور جديدة. يمكن أيضاً لأي <b>مدير</b> آخر إعادة تعيين كلمة مرور أي مستخدم من <b>الإعدادات ← المستخدمون</b>.</p>
+</section>
+
+<section>
+<h2>2. التعرّف على الشاشة</h2>
+<p>القائمة الجانبية على اليمين تنقلك بين الصفحات: <b>لوحة التحكم، أوامر الشراء، عروض الأسعار، أوامر البيع، المالية، المخزون، الإعدادات</b>. وتظهر صفحات إضافية (الصناديق، حسابات الجملة، الشركاء، السيارات) فقط عند تفعيل الميزة المقابلة من الإعدادات.</p>
+<figure><img src="guide-assets/dashboard.png" alt=""><figcaption>لوحة التحكم: الإيرادات وصافي الربح والطلبات المعلّقة وتنبيهات المخزون والمنتجات الأعلى إيراداً (بعد طرح المرتجعات).</figcaption></figure>
+<h3>الأدوار</h3>
+<table>
+  <tr><th>الدور</th><th>ماذا يستطيع</th></tr>
+  <tr><td><b>مدير</b></td><td>كل شيء: الحذف، المستخدمون، النسخ الاحتياطي، الميزات الاختيارية، <b>أسعار التكلفة والأرباح</b>، وتعديل الفواتير المنتهية والمستلمة.</td></tr>
+  <tr><td><b>موظف</b></td><td>الإضافة والبيع والشراء وتسجيل الدفعات والمصاريف والمرتجعات. <b>لا يرى سعر التكلفة ولا الأرباح</b> ولا قيمة المخزون، ولا يحذف، ولا يعدّل فاتورة منتهية.</td></tr>
+</table>
+<div class="tip"><b>نصيحة:</b> أنشئ لكل موظف حساباً خاصاً من <b>الإعدادات ← المستخدمون</b> بدور «موظف».</div>
+<h3>التواريخ والأرقام</h3>
+<p>تظهر التواريخ بصيغة واحدة في كل البرنامج: <span class="num">22/10/2026</span> (يوم/شهر/سنة). وتُعرض الأسعار بالدولار، ويظهر سعر التكلفة الصغير بأربع منازل عشرية (مثل <span class="num">$0.3333</span> للمتر).</p>
+</section>
+
+<section>
+<h2>3. المخزون والمنتجات</h2>
+<figure><img src="guide-assets/inventory.png" alt=""><figcaption>صفحة المخزون: الكمية في كل مكان، وتكلفة الوحدة والقيمة (للمدير)، وحالة كل منتج.</figcaption></figure>
+<h3>إضافة منتج</h3>
+<ol>
+  <li>اضغط <span class="btn">إضافة منتج</span> واكتب الاسم واختر الفئة (أو أضف فئة جديدة من <span class="btn">إضافة فئة</span>).</li>
+  <li>أدخل <b>الكمية الموجودة الآن</b> و<b>تكلفة الوحدة</b> و<b>سعر البيع</b> و<b>مستوى إعادة الطلب</b> (عند وصول الكمية إليه يظهر تنبيه «مخزون منخفض»).</li>
+  <li>اضغط <span class="btn">أضف إلى المخزون</span>.</li>
+</ol>
+<h3>الرصيد الافتتاحي</h3>
+<p>إن أدخلت <b>كمية</b> مع المنتج الجديد يسألك البرنامج عن <b>دفع ثمنها</b>:</p>
+<ul>
+  <li><b>دُفعت الآن من الصندوق:</b> يقترح المبلغ (الكمية × التكلفة) ويمكنك تغييره أو الدفع بالليرة. يخرج المبلغ من الصندوق ويظهر في <b>المالية</b> كـ«شراء بضاعة» (لا يُنقص الربح: يدخل كتكلفة عند البيع).</li>
+  <li><b>بضاعة قديمة (بدون دفع الآن):</b> لا يخرج شيء من الصندوق.</li>
+</ul>
+<p>في الحالتين <b>المورد اختياري</b>. افتح <span class="btn">الرصيد الافتتاحي</span> لترى كل ذلك: <span class="btn">دفع من الصندوق</span> لبضاعة قديمة دفعت ثمنها لاحقاً، و<span class="btn">ربط بمورد</span> متى عرفته: يتحوّل الرصيد إلى <b>أمر شراء مستلم</b> في حساب المورد، وإن كان مدفوعاً من الصندوق <b>ينتقل الدفع معه</b> فلا يبقى عليك شيء ولا يُحسب المال مرتين، ولا تُضاف البضاعة للمخزون مرة ثانية.</p>
+<figure class="small"><img src="guide-assets/opening.png" alt=""><figcaption>الرصيد الافتتاحي: ما أُدخل مع المنتجات الجديدة، دفعه من الصندوق، وربطه بالمورد.</figcaption></figure>
+<h3>البيع بالكسور (مثل الكابل بالمتر)</h3>
+<p>فعّل خيار <b>«يُباع بالكسور»</b> واكتب <b>وحدة القياس</b> (متر، كغ…). عندها تستطيع إدخال كميات مثل <span class="num">3.5</span> في الشراء والبيع والنقل.</p>
+<h3>تصحيح الجرد وحركة المخزون</h3>
+<p>لتصحيح كمية (جرد، قطعة تالفة…) عدّل المنتج وغيّر الكمية، ويطلب البرنامج <b>سبب التعديل</b>. كل تغيير في المخزون محفوظ: اضغط أيقونة <b>الساعة</b> بجانب المنتج لترى <b>حركة المخزون</b>: الشراء والبيع والنقل والمرتجعات والتصحيحات، ومكان كل حركة والرصيد بعدها.</p>
+<figure class="small"><img src="guide-assets/history.png" alt=""><figcaption>حركة المخزون لمنتج واحد.</figcaption></figure>
+<div class="warn"><b>انتبه:</b> لا تستخدم تصحيح الجرد لتسجيل مشتريات؛ المشتريات تتم عبر <b>أمر شراء</b> حتى تُحسب التكلفة والدين للمورد.</div>
+</section>
+
+<section>
+<h2>4. أوامر الشراء</h2>
+<p>أمر الشراء هو ما تطلبه من المورد. يُحسب <b>ديناً للمورد من يوم إنشائه</b>، أما <b>المخزون فلا يتغيّر إلا عند الاستلام</b>.</p>
+<figure class="small"><img src="guide-assets/po-form.png" alt=""><figcaption>أمر الشراء: المنتجات بأسعارها، الخصم، أجرة النقل، والإجمالي المستحق للمورد.</figcaption></figure>
+<h3>إنشاء أمر شراء</h3>
+<ol>
+  <li>اضغط <span class="btn">إضافة أمر شراء</span>، اختر حساب المورد (أو «مورد عابر» واكتب اسمه وهاتفه)، والتاريخ.</li>
+  <li>أضف المنتجات: يُملأ سعر الوحدة تلقائياً بآخر سعر شراء ويمكنك تعديله. يظهر مجموع كل بند والإجمالي أسفل النموذج.</li>
+  <li>أضف <b>الخصم</b> إن وُجد، و<b>أجرة النقل والتحميل</b> إن عرفتها (اختيارية ويمكن إضافتها لاحقاً).</li>
+</ol>
+<h3>أجرة النقل والتحميل</h3>
+<p>اختر لمن تُدفع الأجرة في كل أمر:</p>
+<ul>
+  <li><b>لناقل مستقل:</b> تخرج الآن من الصندوق (بالدولار أو بالليرة) كمصروف «أجرة نقل مشتريات».</li>
+  <li><b>على فاتورة المورد:</b> تُضاف إلى ما ندين به للمورد.</li>
+</ul>
+<p>في الحالتين تُوزَّع الأجرة على منتجات الأمر <b>حسب قيمتها</b> وتدخل في تكلفتها. لإضافتها أو تعديلها بعد الاستلام اضغط أيقونة <b>الشاحنة</b> على الأمر.</p>
+<figure class="small"><img src="guide-assets/transport.png" alt=""><figcaption>أجرة النقل: لناقل مستقل أو على فاتورة المورد.</figcaption></figure>
+<h3>الاستلام (كامل أو جزئي)</h3>
+<ol>
+  <li>عند وصول البضاعة اضغط <b>استلام البضاعة</b> (✓ البرتقالية).</li>
+  <li>أدخل <b>الكمية التي وصلت فعلاً</b> من كل منتج، واختر أين وصلت: فرع أو <b>سيارة</b> مباشرة.</li>
+  <li>إن بقي شيء يصبح الأمر <b>«مستلم جزئياً»</b> وتستلم الباقي لاحقاً.</li>
+</ol>
+<figure class="small"><img src="guide-assets/receive.png" alt=""><figcaption>استلام البضاعة: الكمية الواصلة والمكان.</figcaption></figure>
+<h3>كيف تُحسب تكلفة المنتج؟</h3>
+<p>تكلفة المنتج = <b>آخر سعر شراء</b> له، بعد حصته من خصم الأمر وأجرة النقل. مثال: 10 قطع بـ 100$ وخصم 50$ وأجرة 30$ على أمر قيمته 1000$ ← تكلفة القطعة <span class="num">98$</span>. تظهر «التكلفة الفعلية» لكل بند في <b>تفاصيل الأمر</b> (أيقونة العين).</p>
+<figure class="small"><img src="guide-assets/po-details.png" alt=""><figcaption>تفاصيل أمر الشراء: المستلم والمرتجع والتكلفة الفعلية لكل بند، والمستحق والمدفوع والمتبقي.</figcaption></figure>
+<h3>التعديل والإلغاء والحذف</h3>
+<ul>
+  <li>الأمر «قيد الانتظار» يُعدَّل ويُلغى ويُحذف بحرية. إن كان عليه دفعات يسألك البرنامج: <b>هل استرددت المبلغ من المورد</b> (يعود للصندوق) أم <b>يبقى رصيداً لنا عنده</b> يُخصم من أوامره القادمة.</li>
+  <li>الأمر المستلم يعدّله <b>المدير فقط</b> (انظر قسم 8). لإعادة بضاعة للمورد استخدم <b>المرتجع</b>.</li>
+</ul>
+</section>
+
+<section>
+<h2>5. أوامر البيع</h2>
+<figure class="small"><img src="guide-assets/order-form.png" alt=""><figcaption>أمر البيع: لكل بند مكان يخرج منه (عمود «من»)، والسعر والكمية، وأسفلها الخدمات (اسم حر، مقدّم الخدمة، التكلفة علينا، السعر للعميل).</figcaption></figure>
+<h3>إنشاء أمر بيع</h3>
+<ol>
+  <li>اضغط <span class="btn">إنشاء أمر بيع</span>. اختر <b>تاريخ البيع</b> (اليوم افتراضياً؛ يمكنك اختيار تاريخ سابق لفاتورة تأخر إدخالها) وأدخل بيانات العميل.</li>
+  <li><span class="btn">إضافة عنصر</span>: اختر المنتج (يظهر المتوفر بجانب اسمه) والكمية والسعر. السعر الافتراضي هو سعر البيع (أو سعر الجملة لعميل الجملة).</li>
+  <li>عمود <b>«من»</b> (مع تفعيل الفروع أو السيارات): كل بند يخرج من مكانه الخاص؛ «مكان الطلب» يعني الفرع أو السيارة المختارة أعلى الطلب. مثال: منتج من السيارة ومنتج آخر من المخزن في الطلب نفسه.</li>
+  <li><span class="btn">إضافة خدمة</span> لأي خدمة أو رسم إضافي (توصيل، تركيب، صيانة، ضمان، تغليف…): <b>اكتب اسم الخدمة بحرية</b> أو اختره من الاقتراحات (تظهر الأسماء التي استخدمتها سابقاً)، ثم <b>مقدّم الخدمة</b> (اختياري)، و<b>التكلفة علينا</b> (اتركها 0 إن كان الرسم خالصاً لك)، و<b>السعر للعميل</b>، ثم الخصم و<span class="btn">إنشاء طلب مبيعات</span>.</li>
+</ol>
+<div class="note"><b>تنبيه السعر:</b> إن كان السعر صفراً أو (للمدير) أقل من التكلفة يظهر تنبيه تحت البند، ولا يمنعك من الحفظ.</div>
+<h3>بطاقة الطلب</h3>
+<p>تعرض كل بطاقة التاريخ و<b>المدفوع والمتبقي وحالة الدفع</b> (مدفوع / جزئي / غير مدفوع)، والمجموع بعد المرتجعات.</p>
+<figure class="small"><img src="guide-assets/sales-list.png" alt=""><figcaption>بطاقات أوامر البيع.</figcaption></figure>
+<h3>إنهاء الأمر</h3>
+<p>الأمر «قيد المعالجة» لا يؤثر على المخزون. عند <b>إنهاء</b> (✓ الخضراء) يُخصم كل بند من مكانه ويُسجَّل البيع بتاريخه وتُحفظ تكلفة البضاعة لحساب الربح. إن لم تتوفر الكمية في مكان ما يظهر السبب ولا يتغير شيء.</p>
+<figure class="small"><img src="guide-assets/order-details.png" alt=""><figcaption>تفاصيل الطلب: البنود ومن أين خرجت، والمرتجعات، والمدفوع والمتبقي، والربح للمدير.</figcaption></figure>
+<h3>الفاتورة</h3>
+<p>من أيقونة الفاتورة اضغط <span class="btn">تصدير فاتورة PDF</span> ثم <span class="btn">طباعة / حفظ PDF</span>. تُطبع المدفوعات والمتبقي والمرتجعات إن وُجدت، ويظهر اسم محلك وهواتفه من <b>الإعدادات ← بيانات الشركة</b>.</p>
+<h3>حذف طلب</h3>
+<p>للمدير فقط. إن كان على الطلب دفعات يسألك: <b>أعدنا المبلغ للعميل</b> (يخرج من الصندوق) أم <b>يبقى رصيداً له</b> في حسابه. الطلب الذي عليه مرتجعات يُحذف بعد حذف مرتجعاته.</p>
+</section>
+
+<section>
+<h2>6. عروض الأسعار</h2>
+<p>عرض السعر هو ورقة تقدّمها للعميل <b>قبل أن يقرر الشراء</b>. تشبه أمر البيع، لكنها <b>لا تؤثر على المخزون ولا على المالية</b> إطلاقاً. فإذا وافق العميل تحوّلها بضغطة واحدة إلى <b>أمر بيع جديد</b>.</p>
+<figure><img src="guide-assets/offers.png" alt=""><figcaption>صفحة عروض الأسعار: حالة كل عرض (قيد الانتظار، مقبول، مرفوض، منتهي) وإجماليه.</figcaption></figure>
+<h3>إنشاء عرض</h3>
+<ol>
+  <li>من القائمة الجانبية افتح <b>عروض الأسعار</b> واضغط <span class="btn">عرض جديد</span>.</li>
+  <li>اكتب بيانات العميل، وأضف المنتجات والخدمات والخصم، واختر <b>«ساري حتى»</b> وأضف <b>ملاحظات</b> إن أردت.</li>
+  <li>اضغط <span class="btn">إنشاء العرض</span>. بإمكانك <b>تعديله</b> ما دام «قيد الانتظار».</li>
+</ol>
+<h3>إرسال العرض وقبوله</h3>
+<ul>
+  <li><b>طباعة / PDF:</b> أيقونة الملف. <b>واتساب:</b> أيقونة واتساب مع إمكانية تعديل الرسالة قبل الإرسال.</li>
+  <li>عندما يوافق العميل اضغط <b>قبول العرض</b> ثم <span class="btn">نعم، أنشئ أمر البيع</span>: يُنشأ <b>أمر بيع جديد</b> بالبنود نفسها، ويصبح العرض «مقبولاً» ومقفلاً. المخزون لا يتغير إلا عند <b>إنهاء</b> أمر البيع.</li>
+</ul>
+<figure class="small"><img src="guide-assets/offer-print.png" alt=""><figcaption>تفاصيل العرض: البنود والخدمات والإجمالي، وزر قبوله وتحويله إلى أمر بيع.</figcaption></figure>
+<div class="note"><b>ملاحظات:</b> العرض المنتهي الصلاحية لا يُقبل حتى تعدّل تاريخ «ساري حتى». ويمكنك <b>رفض</b> العرض ثم <b>إعادة فتحه</b>. ويرى المدير <b>الربح المتوقع</b> على كل عرض.</div>
+</section>
+
+<section>
+<h2>7. الدفعات</h2>
+<figure class="small"><img src="guide-assets/payment.png" alt=""><figcaption>نافذة الدفعة: الإجمالي والمدفوع سابقاً والمتبقي، بالدولار أو بالليرة.</figcaption></figure>
+<ul>
+  <li>اضغط أيقونة <b>الدفع</b> على الأمر، اكتب المبلغ أو اضغط <span class="btn">دفع المبلغ المتبقي بالكامل</span>، واختر <b>تاريخ الدفعة</b> (اليوم افتراضياً)، ثم <span class="btn">تأكيد الدفع</span>.</li>
+  <li>يمنع البرنامج تجاوز المتبقي، ولا يسمح بتعديل فاتورة لتصبح أقل مما دُفع عليها.</li>
+  <li>مع تفعيل <b>الصناديق</b> يظهر مفتاح <b>دولار / ليرة</b>: اكتب المبلغ بالليرة و<b>سعر الصرف</b> فيُحسب المقابل بالدولار.</li>
+  <li>دفعة العميل تدخل صندوق عملتها، ودفعة المورد تخرج منه.</li>
+</ul>
+<div class="warn"><b>تنبيه الصندوق:</b> إن خرج مبلغ (مصروف، دفعة لمورد، سحب شريك…) أكبر مما في الصندوق، يُحفظ ولكن يظهر <b>تنبيه أحمر</b> بأن الصندوق أصبح سالباً، لتتأكد من الرصيد الفعلي.</div>
+<h3>الدفعات المجمّعة ورصيد الحساب</h3>
+<p>لعملاء الجملة والموردين: من صفحة <b>حسابات الجملة</b> سجّل دفعة واحدة كبيرة فتُوزَّع تلقائياً على <b>أقدم الفواتير غير المسددة</b>، وما زاد يبقى <b>رصيداً</b> للحساب ويُخصم تلقائياً من فواتيره القادمة.</p>
+</section>
+
+<section>
+<h2>8. المرتجعات وتعديل الفواتير</h2>
+<h3>مرتجع من العميل</h3>
+<ol>
+  <li>على بطاقة طلب منتهٍ اضغط أيقونة <b>المرتجع</b> (السهم البرتقالي).</li>
+  <li>أدخل الكمية المرتجعة من كل منتج، واختر <b>أين تعود</b> (افتراضياً المكان الذي خرجت منه)، والتاريخ وملاحظة.</li>
+  <li>إن كان العميل قد دفع أكثر من قيمة الطلب بعد المرتجع يسألك: <b>نعيده له نقداً</b> (يخرج من الصندوق) أم <b>يبقى رصيداً له</b> في حسابه.</li>
+</ol>
+<p>تعود البضاعة للمخزون، وينقص <b>الإيراد وتكلفة البضاعة والربح</b> في يوم المرتجع، وينقص ما على العميل.</p>
+<figure class="small"><img src="guide-assets/return.png" alt=""><figcaption>مرتجع من العميل.</figcaption></figure>
+<h3>مرتجع إلى المورد</h3>
+<p>على أمر شراء مستلم اضغط <b>مرتجع إلى المورد</b>، وأدخل الكمية والمكان الذي تخرج منه. ينقص ما ندين به للمورد بقيمتها (بعد حصة الخصم). وإن كنا دفعنا أكثر: <b>نسترده نقداً</b> أو <b>يبقى رصيداً لنا عنده</b>.</p>
+<h3>تعديل فاتورة منتهية أو أمر مستلم (للمدير)</h3>
+<ul>
+  <li><b>طلب بيع منتهٍ:</b> اضغط القلم. عند الحفظ تعود الكميات القديمة للمخزون وتخرج الجديدة، ويتعدل الحساب والربح. المنتجات المباعة سابقاً تحتفظ بتكلفتها.</li>
+  <li><b>أمر شراء مستلم:</b> يمكن تعديل الأسعار والخصم والمورد وزيادة الكميات أو إضافة بنود، ولا يمكن إنقاص كمية عمّا وصل (استخدم المرتجع). تتحدث تكلفة المنتجات تلقائياً.</li>
+  <li>كل تعديل يُسجَّل في <b>سجل التعديلات</b> (من نافذة التفاصيل): مَن عدّل، ومتى، وما كان قبل وبعد.</li>
+</ul>
+<div class="note"><b>ملاحظة:</b> لا يمكن تعديل أو حذف فاتورة داخل شهر مُقفل مع الشركاء إلا بعد التراجع عن الإقفال.</div>
+</section>
+
+<section>
+<h2>9. المالية والأرباح</h2>
+<figure><img src="guide-assets/financials.png" alt=""><figcaption>صفحة المالية: اختر الفترة لترى الدخل والمصاريف وصافي الربح، والنقد المقبوض والمدفوع، والديون.</figcaption></figure>
+<p>الفترات <b>تقويمية</b>: اليوم، <b>هذا الأسبوع</b> (يبدأ السبت)، <b>هذا الشهر</b>، هذا الربع، هذه السنة.</p>
+<ul>
+  <li><b>إجمالي الدخل:</b> كل مال دخل الصندوق في الفترة (من العملاء، إيرادات أخرى، إيداع واسترداد)، والليرة تحته إن وُجدت.</li>
+  <li><b>إجمالي المصاريف:</b> كل مال خرج من الصندوق (للموردين، شراء بضاعة ونقلها، المصاريف، السحب والمرتجعات). تحويل العملة بين الصندوقين لا يُحسب دخلاً ولا مصروفاً.</li>
+  <li><b>صافي الربح:</b> الربح الحقيقي (طريقة حسابه أدناه)، لذلك لا يساوي الدخل ناقص المصاريف: البضاعة تُحسب في الربح عند بيعها لا عند شرائها.</li>
+</ul>
+<h3>كيف يُحسب الربح؟</h3>
+<table>
+  <tr><td><b>الإيراد</b></td><td>أوامر البيع <b>عند إنهائها</b> (بعد الخصم) − المرتجعات + أي دخل آخر.</td></tr>
+  <tr><td><b>تكلفة البضاعة</b></td><td>الكمية × تكلفة المنتج لحظة البيع (آخر سعر شراء مع حصة الخصم والنقل) − تكلفة المرتجع.</td></tr>
+  <tr><td><b>تكلفة الخدمات</b></td><td>ما تدفعه لمقدّمي الخدمات (توصيل، تركيب…) في الأوامر المنتهية.</td></tr>
+  <tr><td><b>المصاريف التشغيلية</b></td><td>الإيجار والكهرباء والرواتب… التي تسجلها بنفسك.</td></tr>
+  <tr><td><b>صافي الربح</b></td><td>الإيراد − تكلفة البضاعة − تكلفة الخدمات − المصاريف التشغيلية.</td></tr>
+</table>
+<h3>النقد والديون</h3>
+<ul>
+  <li><b>قبضنا من العملاء / دفعنا للموردين:</b> المال الذي تحرّك فعلاً في الفترة.</li>
+  <li><b>ديون لنا عند العملاء / ديون علينا للموردين:</b> المتبقي حتى اليوم على كل الطلبات.</li>
+  <li><b>شراء بضاعة ونقلها:</b> خروج نقدي لا يُخصم من الربح (التكلفة تدخل الربح عند البيع).</li>
+</ul>
+<h3>آخر الحركات المالية</h3>
+<p>آخر <b>5</b> حركات دخلت الصندوق أو خرجت منه (دفعات، مصروفات، إيرادات، شراء بضاعة...). صفِّها بـ <span class="btn">الدخل</span> أو <span class="btn">المصروف</span>. القائمة الكاملة للمصروفات والإيرادات في الأسفل (بصفحات)، وكل حركة الصندوق في صفحة <b>الصناديق</b>.</p>
+<figure><img src="guide-assets/journal.png" alt=""><figcaption>آخر 5 حركات مالية.</figcaption></figure>
+<h3>تسجيل مصروف أو إيراد</h3>
+<p>اضغط <span class="btn">إضافة مصروف أو إيراد</span> واختر <b>مصروف</b> (يخرج من الصندوق) أو <b>إيراد</b> (يدخل الصندوق، مثل بيع خردة)، ثم اكتب الوصف والفئة والمبلغ والتاريخ. يمكن لأي مستخدم الإضافة، والحذف للمدير. أجرة النقل المرتبطة بأمر شراء تُعدَّل من أمر الشراء نفسه، ودفع ثمن الرصيد الافتتاحي من «الرصيد الافتتاحي».</p>
+<div class="tip"><b>للموظف:</b> يرى الإيراد والمصاريف والنقد والديون، ولا يرى تكلفة البضاعة ولا صافي الربح ولا الرسوم البيانية للربح.</div>
+</section>
+
+<section>
+<h2>10. الميزات الاختيارية</h2>
+<p>من <b>الإعدادات ← الميزات الاختيارية</b> (للمدير) فعّل ما يناسب محلك. كل ميزة <b>مستقلة</b>، وإيقافها يخفيها فقط <b>دون حذف أي بيانات</b>.</p>
+<figure><img src="guide-assets/features.png" alt=""><figcaption>مفاتيح الميزات الاختيارية: المفتاح الأزرق يعني أن الميزة مفعّلة.</figcaption></figure>
+
+<div class="mod"><h3>🏬 الفروع ونقل البضاعة</h3>
+<ul>
+  <li>أضف فروعك من <b>الإعدادات ← إدارة الفروع</b>. لكل فرع <b>مخزونه الخاص</b>، ويظهر <b>اختيار الفرع</b> أعلى القائمة الجانبية لقصر القوائم والتقارير عليه.</li>
+  <li><span class="btn">نقل بضاعة</span> من المخزون: اختر المصدر والوجهة ثم أضف <b>عدة منتجات</b> بكمياتها (<span class="btn">منتج آخر</span>). يُنقل الكل معاً أو لا شيء إن نقصت كمية، ويظهر المتوفر و«بعد النقل» لكل منتج.</li>
+</ul>
+<figure class="small"><img src="guide-assets/transfer.png" alt=""><figcaption>نقل عدة منتجات دفعة واحدة.</figcaption></figure>
+
+</div><div class="mod"><h3>🚚 السيارات</h3>
+<figure><img src="guide-assets/cars.png" alt=""><figcaption>صفحة السيارات: لكل سيارة سائق ومخزون ومصاريف ومبيعات.</figcaption></figure>
+<ol>
+  <li>أضف السيارة (الاسم، اللوحة، السائق)، وحمّلها بـ <span class="btn">تحميل بضاعة</span> أو استلم أمر شراء <b>مباشرة إليها</b>.</li>
+  <li>في أمر البيع اختر <b>«البيع من سيارة»</b> للطلب كله، أو اختر مكان كل بند من عمود <b>«من»</b>.</li>
+  <li><span class="btn">مصروف</span> للوقود والصيانة. تفاصيل السيارة تعرض مخزونها ومصاريفها ومبيعاتها (ما خرج منها فعلاً بعد المرتجعات).</li>
+</ol>
+
+</div><div class="mod"><h3>💵 الصناديق (دولار وليرة)</h3>
+<figure><img src="guide-assets/cashboxes.png" alt=""><figcaption>صندوق الدولار وصندوق الليرة، مع كشف حساب لكل صندوق مرتّب حسب وقت الإدخال.</figcaption></figure>
+<ul>
+  <li>صندوقان <b>منفصلان</b>. ابدأ بـ <span class="btn">إيداع</span> لرصيدك الافتتاحي، و<span class="btn">سحب</span> للسحب اليدوي، و<span class="btn">تحويل بين الصندوقين</span> بسعر صرف تكتبه.</li>
+  <li>الدفعة المجمّعة لحساب جملة تظهر سطراً واحداً بمبلغها كاملاً مع الطلبات التي سدّدتها.</li>
+  <li>إن أصبح صندوق سالباً بسبب مبلغ خارج يظهر تنبيه ولا يُمنع الحفظ. الصفحة للمدير فقط.</li>
+</ul>
+<div class="note"><b>ملاحظة:</b> المحاسبة دائماً <b>بالدولار</b>؛ ما يُدفع بالليرة يُحوَّل بسعر الصرف الذي كتبته وقت الدفع.</div>
+
+</div><div class="mod"><h3>📒 حسابات الجملة</h3>
+<figure><img src="guide-assets/accounts.png" alt=""><figcaption>كشف حساب المورد: الفواتير غير المسددة، والحركات من الأقدم للأحدث مع الرصيد بعد كل حركة.</figcaption></figure>
+<ul>
+  <li>أنشئ حساباً لعميل الجملة أو المورد (أو كليهما) مع <b>رصيد افتتاحي</b> إن وُجد. القائمة تعرض: بعناه، قبضنا منه، اشترينا منه، دفعنا له، والرصيد (<b>عليه</b> لنا أو <b>له</b> عندنا).</li>
+  <li>كل فاتورة تُحسب في الحساب <b>من يوم إنشائها</b>؛ أمر الشراء غير المستلم يظهر «لم يُستلم بعد» وطلب البيع غير المنتهي «لم تُنهَ بعد».</li>
+  <li>افتح الحساب لترى <b>الفواتير غير المسددة</b> (الإجمالي، المدفوع، المتبقي) و<b>كشف الحساب</b> مع المجموع.</li>
+  <li><span class="btn">استلام دفعة</span> / <span class="btn">دفع للمورد</span>: دفعة مجمّعة بتاريخها تُوزَّع على أقدم الفواتير، وتظهر في الكشف أيّ الفواتير سدّدت.</li>
+  <li><span class="btn">قيد يدوي</span> (للمدير)، و<b>كشف حساب</b> عبر واتساب يتضمن الفواتير غير المسددة.</li>
+</ul>
+
+</div><div class="mod"><h3>🤝 الشركاء</h3>
+<figure><img src="guide-assets/partners.png" alt=""><figcaption>الشركاء: النسبة والمسحوبات والرصيد، وزر إقفال الشهر.</figcaption></figure>
+<ol>
+  <li>أضف كل شريك مع <b>نسبته</b> (مجموعها <b>100%</b> عند الإقفال).</li>
+  <li>عند إعداد الصفحة لأول مرة، اضغط <span class="btn">أرباح قبل استخدام البرنامج</span> وأدخل <b>لكل شريك</b> صافي ربحه الخاص حتى تاريخ معيّن (الخسارة بإشارة سالبة) وما سحبه قبل البرنامج. لا يوجد مجموع عام ولا تُستخدم النسب هنا، ويمكن إضافة شريك جديد في أي وقت. يُضاف ذلك إلى أرصدة الشركاء ولا يغيّر الصندوق أو ربح الفترة الحالية. يمكن تصحيحه عبر <span class="btn">تعديل رصيد البداية</span> قبل أول إقفال.</li>
+  <li>لتسجيل أرباح الشريك السابقة <b>شهراً بشهر</b> (أو لأي فترة)، افتح تفاصيل الشريك واستخدم قسم <b>أرباح الشريك قبل استخدام البرنامج</b>: اكتب بداية الفترة (اختياري) ونهايتها ومبلغ ربحه وملاحظة، ثم <span class="btn">إضافة ربح سابق</span>. كل سطر يظهر منفصلاً ويمكن تعديله أو حذفه، ويدخل في رصيد الشريك دون أي أثر على الصندوق.</li>
+  <li>سجّل ما يأخذه الشريك من <span class="btn">تسجيل سحب</span>: <b>سلفة</b> من حصته لا تؤثر على ربح المحل.</li>
+  <li>في نهاية الشهر اضغط <span class="btn">إقفال الشهر وتوزيع الأرباح</span>: معاينة ثم <b>إقفال وتوزيع</b>. يمكن <b>التراجع</b> عن آخر إقفال.</li>
+</ol>
+<div class="warn"><b>انتبه:</b> يجب أن تنتهي الفترة <b>قبل اليوم</b>. الفترات المقفلة <b>محمية</b> من المصاريف والمرتجعات والتعديلات بتاريخ داخلها.</div>
+
+</div><div class="mod"><h3>💬 واتساب</h3>
+<ol>
+  <li>فعّل الميزة ثم <b>الإعدادات ← ربط واتساب</b>: اربط رقم المحل برمز الاقتران أو بمسح رمز <b>QR</b>، واضبط <b>رمز الدولة</b> (سوريا 963).</li>
+  <li>أيقونة واتساب على الطلبات والعروض وكشوف الحساب تفتح <b>نافذة مراجعة</b> للرقم والنص قبل الإرسال، ومع تعذّر الإرسال المباشر تفتح محادثة جاهزة.</li>
+  <li><b>مجموعة التقارير:</b> اضغط <span class="btn">تحميل المجموعات</span> واختر مجموعة (مثل مجموعة الشركاء) يكون رقم المحل عضواً فيها. فعّل <b>إرسال كل عملية بيع عند إنهائها</b>، واضغط <span class="btn">إرسال ملخص اليوم الآن</span> لإرسال مبيعات اليوم والربح والنقد والديون والمخزون المنخفض.</li>
+</ol>
+<div class="note"><b>ملاحظة:</b> واتساب يحتاج إنترنت ومكوّن «دعم واتساب» عند التثبيت. استخدمه بحجم معقول حتى لا يُحظر الرقم.</div>
+</div></section>
+
+<section>
+<h2>11. الإعدادات والنسخ الاحتياطي</h2>
+<h3>بيانات الشركة والمستخدمون</h3>
+<p>اكتب اسم المحل وهواتفه وعنوانه لتظهر على الفواتير. وللمدير: إضافة المستخدمين وتحديد دورهم وتعطيلهم وإعادة تعيين كلمات مرورهم (لا يُحذف آخر مدير).</p>
+<h3>النسخ الاحتياطي والاستعادة</h3>
+<figure class="small"><img src="guide-assets/backup.png" alt=""><figcaption>اختيار مجلد النسخ، النسخ الآن، والاستعادة.</figcaption></figure>
+<ul>
+  <li><b>تلقائي:</b> نسخة يومية عند فتح البرنامج (آخر 14 نسخة).</li>
+  <li><b>مجلد النسخ:</b> اضغط <span class="btn">اختيار</span> وحدد مجلداً على <b>قرص آخر أو فلاشة</b> ثم <span class="btn">حفظ</span>. تُحفظ فيه النسخ اليدوية، وتُنسخ إليه النسخة التلقائية اليومية أيضاً. إن كانت الفلاشة غير موصولة تُحفظ النسخة مؤقتاً في المجلد الافتراضي.</li>
+  <li><b>يدوي:</b> <span class="btn">إنشاء نسخة احتياطية الآن</span>.</li>
+  <li><b>الاستعادة:</b> من قائمة <b>النسخ الموجودة</b> اضغط <span class="btn">استعادة</span>، أو <span class="btn">استعادة من ملف...</span> لاختيار ملف نسخة. يحفظ البرنامج أولاً نسخة من بياناتك الحالية، ثم يستبدلها ويعود لصفحة الدخول.</li>
+</ul>
+<div class="warn"><b>انتبه:</b> الاستعادة تستبدل <b>كل</b> البيانات الحالية بالنسخة المختارة. النسخة المحفوظة قبل الاستعادة تجدها في القائمة باسم <span class="num">before-restore</span> إن احتجت للرجوع.</div>
+<h3>التحديث إلى إصدار جديد</h3>
+<p>شغّل ملف التثبيت الجديد فوق القديم: يُحدَّث البرنامج فقط، وتبقى <b>بياناتك ومستخدموك وترخيصك</b> كما هي، وتُرقّى قاعدة البيانات تلقائياً بعد نسخة احتياطية.</p>
+<div class="tip"><b>أين بياناتي؟</b> في <span class="num">%LOCALAPPDATA%\TradeOps</span>. عند الحاجة للدعم أرسل ملف <span class="num">logs	radeops.log</span>.</div>
+</section>
+
+<section>
+<h2>12. أسئلة شائعة</h2>
+<table>
+  <tr><th style="width:38%">السؤال</th><th>الجواب</th></tr>
+  <tr><td>لماذا لا ينقص المخزون بعد إنشاء أمر البيع؟</td><td>يُخصم عند <b>إنهاء</b> الأمر وليس عند إنشائه.</td></tr>
+  <tr><td>أريد تعديل طلب منتهٍ.</td><td>المدير يعدّله بالقلم وتتعدل الكميات والحساب تلقائياً، ويُسجَّل التعديل. أو استخدم <b>المرتجع</b> إن أعاد العميل بضاعة.</td></tr>
+  <tr><td>ظهر «المخزون غير كافٍ».</td><td>الكمية أكبر من المتوفر <b>في مكان البند</b> (فرع أو سيارة). انقل بضاعة إليه أو غيّر «من».</td></tr>
+  <tr><td>لماذا تغيّرت تكلفة المنتج بعد الاستلام؟</td><td>التكلفة = آخر سعر شراء مع حصته من الخصم وأجرة النقل.</td></tr>
+  <tr><td>حساب المورد يُظهر ديناً لأمر لم يصل بعد.</td><td>صحيح: الأمر دين من يوم إنشائه. ألغِه إن لم يعد مطلوباً.</td></tr>
+  <tr><td>أدخلت منتجاً بكمية؛ لماذا لم يخرج مال من الصندوق؟</td><td>اخترت «بضاعة قديمة (بدون دفع)». إن دفعت ثمنها اضغط «دفع من الصندوق» في «الرصيد الافتتاحي»، أو اربطها بالمورد إن كان عليك ثمنها.</td></tr>
+  <tr><td>ظهر تنبيه أن الصندوق سالب.</td><td>خرج مبلغ أكبر مما سجّلته في الصندوق. أضف رصيدك الافتتاحي من <span class="btn">إيداع</span> أو راجع المبلغ.</td></tr>
+  <tr><td>الموظف لا يرى الأرباح والتكلفة.</td><td>هذا مقصود: الأرباح وأسعار التكلفة للمدير فقط.</td></tr>
+  <tr><td>لا يقبل الإقفال: «مجموع النسب».</td><td>اجعل مجموع نسب الشركاء الفعّالين 100%.</td></tr>
+  <tr><td>أيقونة واتساب لا ترسل مباشرة.</td><td>تأكد من ربط الرقم في الإعدادات؛ إن ظهرت حالة «غير مربوط» فامسح الرمز من واتساب ← الأجهزة المرتبطة.</td></tr>
+</table>
+<div class="tip"><b>عادات تحفظ لك وقتك:</b>
+  <ul style="margin:2mm 0 0">
+    <li>سجّل المشتريات عبر <b>أوامر الشراء</b> واستلمها عند وصولها، وأضف أجرة النقل لتبقى التكلفة صحيحة.</li>
+    <li>أنهِ أوامر البيع يومياً ليظهر الربح الفعلي.</li>
+    <li>اختر مجلد نسخ على فلاشة وخذ نسخة يدوية أسبوعياً.</li>
+    <li>أقفِل الشهر مع الشركاء في أول يوم من الشهر التالي.</li>
+  </ul></div>
+<p style="text-align:center;color:var(--mute);margin-top:12mm">تريد أوبس — الإصدار 1.0 — للدعم الفني تواصل مع مزوّد البرنامج</p>
+</section>
+
+<div class="back">
+  <div class="eyebrow">تريد أوبس هو منتج من</div>
+  <div class="wm en"><svg class="mk" viewBox="0 0 200 200"><defs><mask id="nqb"><rect width="200" height="200" fill="#fff"/><g fill="#000" transform="translate(0 10)"><path d="M71.7 71.7A40 40 0 1 0 128.3 71.7L117 83A24 24 0 1 1 83 83Z"/><polygon points="100,40 112,52 100,64 88,52"/><rect x="91.5" y="43.5" width="17" height="17"/></g></mask></defs><polygon points="100,20 180,100 100,180 20,100" fill="#ff6a4d" mask="url(#nqb)"/></svg><span>nuqta</span></div>
+  <div class="wm ar"><svg class="mk" viewBox="0 0 200 200"><defs><mask id="nqc"><rect width="200" height="200" fill="#fff"/><g fill="#000" transform="translate(0 10)"><path d="M71.7 71.7A40 40 0 1 0 128.3 71.7L117 83A24 24 0 1 1 83 83Z"/><polygon points="100,40 112,52 100,64 88,52"/><rect x="91.5" y="43.5" width="17" height="17"/></g></mask></defs><polygon points="100,20 180,100 100,180 20,100" fill="#ff6a4d" mask="url(#nqc)"/></svg><span>نقطة</span></div>
+  <div class="kind">Web Studio · ستوديو ويب</div>
+  <div class="rule"></div>
+  <p>نقطة ستوديو ويب من شخصين يبني المتاجر ومواقع الحجز وأنظمة ERP والهويات البصرية وتطبيقات الجوال.</p>
+  <p class="en">Nuqta is a two-person web studio building storefronts, booking sites, ERP systems, brand identities and mobile apps.</p>
+  <div class="cta">تواصل معنا عبر واتساب</div>
+  <div class="contact">WhatsApp +963 992 575 158 &nbsp;·&nbsp; +963 945 294 464<br>ferasaljabry@gmail.com &nbsp;·&nbsp; guyth.daba@gmail.com</div>
+  <div class="foot">SOLAROPS · v1.0 · A NUQTA WEB STUDIO PRODUCT</div>
+</div>
+</body>
+</html>

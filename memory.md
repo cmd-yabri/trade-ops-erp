@@ -10,6 +10,10 @@ Created 2026-11-01 as a copy of SolarOps (`C:\Users\msi\Desktop\Solar-Ops`, bran
 * Removed: Arabic user guide (`docs/`, was solar + green screenshots) and `tools/seed_demo.py` (solar scenarios). Product-category colours in Inventory are now hashed by name.
 * Version restarted at 1.0.0.
 
-## Not done yet
-Not built, tested or run: run `release.bat` (tests, tsc, eslint, exe, installer) first. No Git commit beyond the initial one. User guide and demo seeder to rewrite. Some Arabic wording (e.g. contractor jobs) is still equipment-shop flavoured.
-Gotchas: see the SolarOps memory (bare `python` hangs, use `C:\Python314\python -I`; kill vite before `npm ci`; run release.bat via `cmd /c "...\release.bat < nul > log 2>&1"`).
+## State (2026-11-01)
+* Services on sales orders/offers are FREE TEXT (`FreelanceJob.job_type` / `OfferJob.job_type`, max 100, migrations order 0010 + offers); UI field + suggestions from used names (`frontend/src/lib/services.ts`); old codes STEEL/ELECTRIC/INSTALL/MOVING still display with Arabic names. Financials label "تكلفة الخدمات".
+* Built with `release.bat` (venv `.venv` created from C:\Python314; 214 tests OK): `dist\TradeOps-Setup-1.0.0.exe` + sha256 file. Installer NOT installed or launch-tested; `dist\TradeOps.exe` was launched headless on an empty data dir and served the app.
+* User guide (Arabic): `docs/user-guide-ar.html` -> `docs/TradeOps-User-Guide-AR.pdf` (render with playwright `page.pdf({preferCSSPageSize:true,printBackground:true})` while serving docs/ over `python -m http.server`). Screenshots in `docs/guide-assets` come from the built exe + a demo dataset; the PDF pages were checked only partly (cover, section 5).
+* Test fix: `test_period_windows` was date dependent (failed on the 1st of a month); now month-aware.
+* Gotchas: the `Documents\T...` style backslash in a non-raw docstring gives a SyntaxWarning (fixed once); dev servers (vite/esbuild) must be stopped before `release.bat`.
+* Still not done: backup of vendor keys is on `D:\TradeOps-vendor-backup\`; push to GitHub never done; WhatsApp sidecar and real printing untested; some copy (e.g. "cars") remains shop-flavoured.

@@ -6,6 +6,7 @@ financial reports. Shipped as a single Windows `.exe` (Django + React in a
 native Edge-WebView2 window). Works 100% offline, USD, Arabic (RTL) UI.
 
 ## For customers
+* **User guide (Arabic, PDF):** `docs/TradeOps-User-Guide-AR.pdf` (source `docs/user-guide-ar.html`).
 * Double-click `TradeOps.exe`. On the first start the **owner (admin) account** is created.
 * Data lives in `%LOCALAPPDATA%\TradeOps` (database, logs, automatic daily backups).
   Manual backups: *Settings -> Backup* writes to `Documents\TradeOps Backups`.

@@ -105,7 +105,7 @@ class FeatureSettings(models.Model):
 class BackupSettings(models.Model):
     """Single row (pk=1): where backups go besides the app's own folder.
 
-    `folder` empty = Documents\TradeOps Backups. A folder on another disk or a USB stick keeps a copy
+    `folder` empty = the Documents folder, TradeOps Backups. A folder on another disk or a USB stick keeps a copy
     safe if this PC's disk fails; daily automatic backups are copied there too (`copy_auto`).
     """
 
