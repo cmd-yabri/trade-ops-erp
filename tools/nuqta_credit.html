@@ -1,0 +1,22 @@
+<!doctype html>
+<!-- Source of assets/nuqta-credit.png (the "A product of nuqta" credit on the installer banner).
+     Render: serve the repo root over http, open /tools/nuqta_credit.html with a 140x62 viewport and
+     screenshot the #credit element with a transparent background at deviceScaleFactor 4
+     (see tools/make_icon.py). The mark is the studio's identity: Desktop\nuqta-brand\logos\nuqta-mark.svg. -->
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Geist"; src: url("/frontend/src/assets/fonts/geist-latin.woff2") format("woff2"); font-weight: 100 900; }
+  html, body { margin: 0; background: transparent; }
+  #credit { width: 140px; height: 62px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; font-family: Geist, sans-serif; }
+  .eyebrow { font-size: 7.5px; letter-spacing: .24em; text-transform: uppercase; color: rgba(255,255,255,.78); font-weight: 500; }
+  .chip { display: inline-flex; align-items: center; gap: .04em; background: #0c0c0d; border-radius: 999px; padding: 5px 15px 5px 11px;
+          color: #fff; font-size: 17px; font-weight: 600; letter-spacing: -.04em; line-height: 1; }
+  .mk { width: 1.4em; height: 1.4em; margin-inline-start: -.18em; flex: none; }
+</style>
+<div id="credit">
+  <div class="eyebrow">A product of</div>
+  <div class="chip">
+    <svg class="mk" viewBox="0 0 200 200"><defs><mask id="n"><rect width="200" height="200" fill="#fff"/><g fill="#000" transform="translate(0 10)"><path d="M71.7 71.7A40 40 0 1 0 128.3 71.7L117 83A24 24 0 1 1 83 83Z"/><polygon points="100,40 112,52 100,64 88,52"/><rect x="91.5" y="43.5" width="17" height="17"/></g></mask></defs><polygon points="100,20 180,100 100,180 20,100" fill="#ff6a4d" mask="url(#n)"/></svg>
+    <span>nuqta</span>
+  </div>
+</div>

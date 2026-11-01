@@ -1,0 +1,9 @@
+# Runtime dependencies (tested with Python 3.14, Windows 11)
+Django==6.1.2
+djangorestframework==3.18.3
+djangorestframework-simplejwt==5.5.1
+django-cors-headers==4.9.0
+whitenoise==6.12.0
+waitress==3.0.2
+pywebview==6.2.1
+cryptography==50.0.2

@@ -1,0 +1,24 @@
+# Python / Django
+.venv/
+__pycache__/
+*.pyc
+data/
+build_data/
+staticfiles/
+
+# PyInstaller output
+build/
+dist/
+
+# Node
+node_modules/
+whatsapp-service/node.exe
+frontend/dist/
+
+# Never commit databases, keys or temp files
+*.sqlite3
+secret.key
+install.id
+*.pem
+tmpclaude-*
+.playwright-cli/

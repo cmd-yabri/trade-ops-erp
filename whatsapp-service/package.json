@@ -1,0 +1,21 @@
+{
+  "name": "tradeops-whatsapp-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local WhatsApp gateway for TradeOps. Speaks WhatsApp's multi-device protocol directly (Baileys); started and supervised by the TradeOps backend when the WhatsApp feature is switched on.",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@hapi/boom": "^10.0.1",
+    "@whiskeysockets/baileys": "^6.7.9",
+    "express": "^4.21.2",
+    "pino": "^9.5.0",
+    "qrcode": "^1.5.4"
+  }
+}
